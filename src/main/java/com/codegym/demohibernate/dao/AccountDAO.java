@@ -17,7 +17,7 @@ public class AccountDAO {
     public List<Account> getAll(){
         String queryStr = "SELECT a FROM Account a";
         TypedQuery<Account> query = entityManager.createQuery(queryStr, Account.class);
-        return (List<Account>) query.getResultList();
+        return query.getResultList();
     }
 
     public Account findById(int id){

@@ -68,8 +68,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Override
     // chỉ cho Spring biết chỗ lấy tài liệu tĩnh.(js,css,img)
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/i/**")
-                .addResourceLocations("file:/Users/johntoan98gmail.com/Desktop/project/Module4/BTVN_Module4_Tuan1/src/main/webapp/");
+        registry.addResourceHandler("/**")
+                .addResourceLocations("file:/Users/johntoan98gmail.com/Desktop/demoHibernate/src/main/webapp/");
     }
 
     // Thay đổi kích thước file upload
@@ -108,7 +108,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         return properties;
     }
 
