@@ -2,16 +2,17 @@ package com.codegym.demohibernate.dao;
 
 import com.codegym.demohibernate.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
+@Transactional
 public class AccountDAO {
-    @Autowired
+    @PersistenceContext
     EntityManager entityManager;
 
     public List<Account> getAll(){
@@ -21,31 +22,20 @@ public class AccountDAO {
     }
 
     public Account findById(int id){
-        String queryStr = "SELECT a FROM Account a where a.id = :id";
-        TypedQuery<Account> query = entityManager.createQuery(queryStr, Account.class).setParameter("id", id);
-        return  query.getSingleResult();
+        return entityManager.find(Account.class, id);
     }
 
-
     public void save(Account account){
-        EntityTransaction txn = entityManager.getTransaction();
-        txn.begin();
         entityManager.persist(account);
-        txn.commit();
+
     }
 
     public void edit(Account account){
-        EntityTransaction txn = entityManager.getTransaction();
-        txn.begin();
         entityManager.merge(account);
-        txn.commit();
     }
 
     public void delete(Account account){
-        EntityTransaction txn = entityManager.getTransaction();
-        txn.begin();
-        entityManager.remove(account);
-        txn.commit();
+        entityManager.remove(account.getId());
     }
 
 
