@@ -29,7 +29,9 @@ public class AccountService {
             e.printStackTrace();
         }
         account.setAvatar("/img/"+ nameFile);
+
         Role role = roleDAO.findById(idRole);
+
         account.setRole(role);
         accountDAO.save(account);
     }

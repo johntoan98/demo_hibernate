@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.hibernate:hibernate-entitymanager:5.6.3.Final'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
     implementation group: 'org.springframework', name: 'spring-orm', version: '4.3.17.RELEASE'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.7.6'
 
 }
 
