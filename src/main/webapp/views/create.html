@@ -24,8 +24,13 @@
             </thead>
             <tbody>
             <tr>
-                <td><input th:field="*{username}"></td>
-                <td><input th:field="*{password}"></td>
+                <td><input th:field="*{username}">
+                    <p style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                </td>
+                <td><input th:field="*{password}">
+                    <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+                </td>
                 <td>
                     <select name="idRole">
                         <option value="2">User</option>

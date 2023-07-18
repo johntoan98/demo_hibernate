@@ -15,29 +15,38 @@ public class AccountDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Account> getAll(){
+    public List<Account> getAll() {
         String queryStr = "SELECT a FROM Account a";
         TypedQuery<Account> query = entityManager.createQuery(queryStr, Account.class);
         return query.getResultList();
     }
 
-    public Account findById(int id){
+    public Account findById(int id) {
         return entityManager.find(Account.class, id);
     }
 
-    public void save(Account account){
+    public Account findByUserName(String username) {
+        String queryStr = "SELECT a FROM Account a where username =:username";
+        TypedQuery<Account> query = entityManager.createQuery(queryStr, Account.class).setParameter("username", username);
+        try {
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void save(Account account) {
         entityManager.persist(account);
 
     }
 
-    public void edit(Account account){
+    public void edit(Account account) {
         entityManager.merge(account);
     }
 
-    public void delete(Account account){
+    public void delete(Account account) {
         entityManager.remove(account.getId());
     }
-
 
 
 }

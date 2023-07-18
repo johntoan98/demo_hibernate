@@ -1,6 +1,7 @@
 package com.codegym.demohibernate.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
@@ -8,7 +9,9 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 6, message = "nhiều hơn 6 ký tự")
     private String username;
+    @Size(min = 6, message = "nhiều hơn 6 ký tự")
     private String password;
     private String avatar;
     private Date birthDay;
